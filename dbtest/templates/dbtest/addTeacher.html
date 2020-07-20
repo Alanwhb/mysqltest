@@ -1,0 +1,18 @@
+{% extends 'dbtest/base.html' %}
+
+{% block title %}
+添加教师
+{% endblock %}
+
+{% block body %}
+<h1>添加教师</h1>
+<form action="{% url 'addTeacher' %}" method="post">
+    {% csrf_token %}
+    <p>工号：<input type="text" name="id" oninput="value=value.replace(/[^\d]/g,'')"></p>
+    <p>姓名：<input type="text" name="name"></p>
+    <p>密码：<input type="text" name="password"></p>
+    <button type="submit" style="color: aquamarine">提交</button>
+</form>
+<a href="{% url 'teacherList' %}"><button style="color: lightpink">取消</button> </a>
+
+{% endblock %}

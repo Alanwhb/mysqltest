@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StudentList</title>
+</head>
+<body>
+
+{# 重定向到此页面时会显示消息提示（如删除后跳转) #}
+{% if messages %}
+{% for message in messages %}
+<script type="text/javascript">alert('{{ message }}')</script>
+{% endfor %}
+{% endif %}
+
+<h1>学生列表</h1>
+{% if student_list %}
+    <table border="1">
+    <tr>
+        <th>班级</th><th>学号</th><th>姓名</th><th>密码</th><th>操作</th>
+    </tr>
+    {% for student in student_list %}
+        <tr>
+            <td>{{ student.classInfo }}</td>
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.password }}</td>
+            <td>
+                <a href="{% url 'updateStudent' student.id %}"><button>修改</button></a>
+                <a href="{% url 'deleteStudent' student.id %}"><button>删除</button></a>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No students are available..</p>
+{% endif %}
+<a href="{% url 'addStudent' %}"><button><strong>添加学生++</strong></button>
+</a>
+<br>
+<a href="{% url 'manager' %}"><button><strong>返回</strong></button>
+</a>
+</body>
+</html>

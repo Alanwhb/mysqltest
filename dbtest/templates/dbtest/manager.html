@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager</title>
+</head>
+<body>
+
+<div>
+    <h1>Welcome 管理员儿~</h1>
+    <a href="{% url 'logout' %}"><i><u>登出</u></i></a>
+</div>
+
+<ul>
+    <li><a href="{% url 'classList' %}">班级列表</a> </li>
+    <li><a href="{% url 'studentList' %}">学生列表</a> </li>
+    <li><a href="{% url 'teacherList' %}">教师列表</a> </li>
+    <li><a href="{% url 'courseList' %}">课程列表</a> </li>
+</ul>
+
+</body>
+</html>

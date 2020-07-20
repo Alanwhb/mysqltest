@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+{# 跳转后的弹窗提示 #}
+{% if messages %}
+{% for message in messages %}
+<script type="text/javascript">alert('{{ message }}')</script>
+{% endfor %}
+{% endif %}
+
+{# 此处可添加导航栏block #}
+
+{# 主体块 #}
+{% block body %}
+{% endblock %}
+
+{# 页面消息提示 #}
+{% if error_message %}
+    <p><strong style="color: firebrick">{{ error_message }}</strong></p>
+{% endif %}
+{% if success_message %}
+    <p><strong style="color: forestgreen">{{ success_message }}</strong></p>
+{% endif %}
+
+</body>
+</html>

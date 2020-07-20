@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加班级</title>
+</head>
+<body>
+<h1>添加班级</h1>
+<form action="{% url 'addClass' %}" method="post">
+    {% csrf_token %}
+    <p>班级号：<input type="text" name="id" oninput="value=value.replace(/[^\d]/g,'')"></p>
+    <button type="submit" style="color: aquamarine">提交</button>
+</form>
+<a href="{% url 'classList' %}"><button style="color: lightpink">取消</button> </a>
+{% if error_message %}
+    <p><strong style="color: firebrick">{{ error_message }}</strong></p>
+{% endif %}
+{% if success_message %}
+    <p><strong style="color: forestgreen">{{ success_message }}</strong></p>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% extends 'dbtest/base.html' %}
+
+{% block title %}
+修改课程信息
+{% endblock %}
+
+{% block body %}
+<h1>修改课程信息</h1>
+<form action="{% url 'updateCourse' cid %}" method="post">
+    {% csrf_token %}
+    <p>教工号：<input type="text" name="id" oninput="value=value.replace(/[^\d]/g,'')" value="{{ course.id }}"></p>
+    <p>教工号：<input type="text" name="tid" oninput="value=value.replace(/[^\d]/g,'')" value="{{ course.teacher.id }}"></p>
+    <p>课程名：<input type="text" name="name" value="{{ course.name }}"></p>
+    <p>学分：<input type="number" step="0.1" name="credit" value="{{ course.credit }}"></p>
+    <button type="submit" style="color: aquamarine">提交</button>
+</form>
+<a href="{% url 'courseList' %}"><button style="color: lightpink">取消</button> </a>
+
+{% endblock %}

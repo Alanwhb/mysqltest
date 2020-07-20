@@ -1,0 +1,37 @@
+{% extends 'dbtest/base.html' %}
+
+{% block title %}
+教师列表
+{% endblock %}
+
+{% block body %}
+
+    <h1>教师列表</h1>
+{% if teacher_list %}
+    <table border="1">
+    <tr>
+        <th>工号</th><th>姓名</th><th>密码</th><th>操作</th>
+    </tr>
+    {% for teacher in teacher_list %}
+        <tr>
+            <td>{{ teacher.id }}</td>
+            <td>{{ teacher.name }}</td>
+            <td>{{ teacher.password }}</td>
+            <td>
+                <a href="{% url 'updateTeacher' teacher.id %}"><button>修改</button></a>
+                <a href="{% url 'deleteTeacher' teacher.id %}"><button>删除</button></a>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No Teachers are available..</p>
+{% endif %}
+
+<a href="{% url 'addTeacher' %}"><button><strong>添加教师++</strong></button>
+</a>
+<br>
+<a href="{% url 'manager' %}"><button><strong>返回</strong></button>
+</a>
+
+{% endblock %}

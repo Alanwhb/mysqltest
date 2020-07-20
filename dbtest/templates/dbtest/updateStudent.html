@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改学生信息</title>
+</head>
+<body>
+
+<h1>修改学生信息</h1>
+<form action="{% url 'updateStudent' sid %}" method="post">
+    {% csrf_token %}
+    <p>班级：<input type="text" name="classInfo" oninput="value=value.replace(/[^\d]/g,'')" value="{{ student.classInfo.id }}"></p>
+    <p>学号：<input type="text" name="id" oninput="value=value.replace(/[^\d]/g,'')" value="{{ student.id }}"></p>
+    <p>姓名：<input type="text" name="name" value="{{ student.name }}"></p>
+    <p>密码：<input type="text" name="password" value="{{ student.password }}"></p>
+    <button type="submit" style="color: aquamarine">提交</button>
+</form>
+<a href="{% url "studentList" %}"><button style="color: lightpink">取消</button> </a>
+{% if error_message %}
+    <p><strong style="color: firebrick">失败：{{ error_message }}</strong></p>
+{% endif %}
+
+</body>
+</html>

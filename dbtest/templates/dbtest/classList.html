@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>班级列表</title>
+</head>
+<body>
+
+<h1>班级列表</h1>
+{% if classList %}
+<table border="1">
+    <tr>
+        <th>序号</th><th>班级</th><th>操作</th>
+    </tr>
+    {% for class in classList %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><a href="{% url 'classStudent' class.id %}">{{ class.id }}</a></td>
+            <td><button>删除</button></td>
+        </tr>
+    {% endfor %}
+</table>
+{% else %}
+    <p>目前没有任何班级，请先添加</p>
+{% endif %}
+<a href="{% url 'addClass' %}"><button><strong>添加班级++</strong></button>
+</a>
+<br>
+<a href="{% url 'manager' %}"><button><strong>返回</strong></button>
+</a>
+</body>
+</html>

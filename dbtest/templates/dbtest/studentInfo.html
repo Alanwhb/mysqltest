@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StudentInfo</title>
+</head>
+<body>
+
+{% if messages %}
+{% for message in messages %}
+<script type="text/javascript">alert('{{ message }}')</script>
+{% endfor %}
+{% endif %}
+
+<div>
+    <h1>Welcome~{{ student.name }}</h1>
+    <a href="{% url 'logout' %}"><i><u>登出</u></i></a>
+</div>
+<h4>学号：{{ student.id }}      班级：{{ student.classInfo }}</h4>
+
+{% if score_list %}
+    <table border="1">
+        <tr>
+            <th>课程号</th>
+            <th>课程名称</th>
+            <th>成绩</th>
+        </tr>
+    {% for score in score_list %}
+        <tr>
+            <th>{{ score.course.id }} </th>
+            <th>{{ score.course }}</th>
+            <th>{{ score.score }}</th>
+        </tr>
+    {% endfor %}
+    </table>
+
+{% else %}
+    <p>No scores are available!</p>
+{% endif %}
+</body>
+</html>

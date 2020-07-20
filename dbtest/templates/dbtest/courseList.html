@@ -1,0 +1,38 @@
+{% extends 'dbtest/base.html' %}
+
+{% block title %}
+课程列表
+{% endblock %}
+
+{% block body %}
+
+<h1>课程列表</h1>
+{% if course_list %}
+    <table border="1">
+    <tr>
+        <th>课程号</th><th>课程名</th><th>任课老师</th><th>学分</th><th>操作</th>
+    </tr>
+    {% for course in course_list %}
+        <tr>
+            <td>{{ course.id }}</td>
+            <td>{{ course.name }}</td>
+            <td>{{ course.teacher.name }}</td>
+            <td>{{ course.credit }}</td>
+            <td>
+                <a href="{% url 'updateCourse' course.id %}"><button>编辑</button></a>
+                <a href="{% url 'deleteCourse' course.id %}"><button>删除</button></a>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No courses are available..</p>
+{% endif %}
+
+<a href="{% url 'addCourse' %}"><button><strong>添加课程++</strong></button>
+</a>
+<br>
+<a href="{% url 'manager' %}"><button><strong>返回</strong></button>
+</a>
+
+{% endblock %}

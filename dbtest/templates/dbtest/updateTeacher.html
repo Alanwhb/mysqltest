@@ -1,0 +1,18 @@
+{% extends 'dbtest/base.html' %}
+
+{% block title %}
+修改教师信息
+{% endblock %}
+
+{% block body %}
+<h1>修改教师信息</h1>
+<form action="{% url 'updateTeacher' tid %}" method="post">
+    {% csrf_token %}
+    <p>学号：<input type="text" name="id" oninput="value=value.replace(/[^\d]/g,'')" value="{{ teacher.id }}"></p>
+    <p>姓名：<input type="text" name="name" value="{{ teacher.name }}"></p>
+    <p>密码：<input type="text" name="password" value="{{ teacher.password }}"></p>
+    <button type="submit" style="color: aquamarine">提交</button>
+</form>
+<a href="{% url "teacherList" %}"><button style="color: lightpink">取消</button> </a>
+
+{% endblock %}

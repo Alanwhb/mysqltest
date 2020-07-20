@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>班级里滴学生</title>
+</head>
+<body>
+<h1>班级{{ classInfo.id }}</h1>
+{% if classInfo.student_set.count %}
+<table border="1">
+    <tr>
+        <th>序号</th><th>班级</th><th>学号</th><th>姓名</th><th>密码</th><th>操作</th>
+    </tr>
+    {% for student in classInfo.student_set.all %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ classInfo.id }}</td>
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.password }}</td>
+        <td><button>修改</button><button>删除</button></td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+    <p>班里没得人</p>
+{% endif %}
+<a href="{% url 'addStudent' %}"><button>添加学生++</button></a>
+<br>
+<a href="{% url 'classList' %}"><button><strong>返回</strong></button></a>
+</body>
+</html>
